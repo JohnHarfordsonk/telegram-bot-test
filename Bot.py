@@ -118,7 +118,7 @@ def set_reminder(bot, update, args):
     try:
         reminder_time = datetime.datetime.strptime(reminder_time, '%Y-%m-%d %H:%M:%S')
     except ValueError:
-        update.message.reply_text('Invalid datetime format. Use YYYY-MM-DD HH:MM:SS.')
+        update.effective_chat.id('Invalid datetime format. Use YYYY-MM-DD HH:MM:SS.')
         return
 
     # Calculate the time difference between the reminder time and now
@@ -126,7 +126,7 @@ def set_reminder(bot, update, args):
 
     # Check if the reminder time has already passed
     if time_delta < 0:
-        update.message.reply_text('Reminder time has already passed.')
+        update.effective_chat.id('Reminder time has already passed.')
         return
 
     # Define a function to send the reminder message
@@ -137,7 +137,7 @@ def set_reminder(bot, update, args):
     threading.Timer(time_delta, send_reminder).start()
 
     # Confirm the reminder has been set
-    update.message.reply_text(f'Reminder set for {reminder_time}.')
+    update.effective_chat.id(f'Reminder set for {reminder_time}.')
 
 # Define a function to handle incoming messages
 def handle_message(update, context):
